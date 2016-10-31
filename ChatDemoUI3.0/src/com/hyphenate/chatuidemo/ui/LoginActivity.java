@@ -58,7 +58,7 @@ public class LoginActivity extends BaseActivity {
 
 			return;
 		}
-		setContentView(R.layout.em_activity_login);
+		setContentView(R.layout.activity_login);
 
 		usernameEditText = (EditText) findViewById(R.id.username);
 		passwordEditText = (EditText) findViewById(R.id.password);
