@@ -6,30 +6,13 @@ import com.hyphenate.chat.EMClient;
 import cn.ucai.superwechat.DemoHelper;
 import cn.ucai.superwechat.R;
 
-/**
- * 开屏页
- *
- */
 public class SplashActivity extends BaseActivity {
-
-
-
 	private static final int sleepTime = 2000;
-
-
-
 	@Override
-
 	protected void onCreate(Bundle arg0) {
-
 		setContentView(R.layout.em_activity_splash);
-
 		super.onCreate(arg0);
-
 	}
-
-
-
 	@Override
 
 	protected void onStart() {
@@ -86,7 +69,7 @@ public class SplashActivity extends BaseActivity {
 
 					}
 
-					startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+					startActivity(new Intent(SplashActivity.this, GuideActivity.class));
 
 					finish();
 
