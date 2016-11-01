@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.hyphenate.chatuidemo"
+    package="cn.ucai.superwechat"
     android:versionCode="36"
     android:versionName="3.1.4">
 
     <uses-sdk
-
         android:minSdkVersion="11"
-
         android:targetSdkVersion="22"
-
         tools:overrideLibrary="com.easemob.redpacketui" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -54,7 +51,7 @@
 
 
 
-    <!-- GCM required, remember replace "com.hyphenate.chatuidemo" to your own package -->
+    <!-- GCM required, remember replace "cn.ucai.superwechat" to your own package -->
 
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -62,25 +59,25 @@
 
     <permission
 
-        android:name="com.hyphenate.chatuidemo.permission.C2D_MESSAGE"
+        android:name="cn.ucai.superwechat.permission.C2D_MESSAGE"
 
         android:protectionLevel="signature" />
 
 
 
-    <uses-permission android:name="com.hyphenate.chatuidemo.permission.C2D_MESSAGE" />
+    <uses-permission android:name="cn.ucai.superwechat.permission.C2D_MESSAGE" />
 
 
 
     <permission
 
-        android:name="com.hyphenate.chatuidemo.permission.MIPUSH_RECEIVE"
+        android:name="cn.ucai.superwechat.permission.MIPUSH_RECEIVE"
 
         android:protectionLevel="signature" />
 
 
 
-    <uses-permission android:name="com.hyphenate.chatuidemo.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="cn.ucai.superwechat.permission.MIPUSH_RECEIVE" />
 
 
 
@@ -90,7 +87,7 @@
 
     <application
 
-        android:name=".DemoApplication"
+        android:name="cn.ucai.superwechat.DemoApplication"
 
         android:allowBackup="true"
 
@@ -100,7 +97,7 @@
 
         <activity
 
-            android:name=".ui.MainActivity"
+            android:name="cn.ucai.superwechat.ui.MainActivity"
 
             android:launchMode="singleTask"
 
@@ -116,7 +113,7 @@
 
         <activity
 
-            android:name=".ui.SplashActivity"
+            android:name="cn.ucai.superwechat.ui.SplashActivity"
 
             android:screenOrientation="portrait"
 
@@ -140,7 +137,7 @@
 
         <activity
 
-            android:name=".ui.LoginActivity"
+            android:name="cn.ucai.superwechat.ui.LoginActivity"
 
             android:screenOrientation="portrait"
 
@@ -154,7 +151,7 @@
 
         <activity
 
-            android:name=".ui.RegisterActivity"
+            android:name="cn.ucai.superwechat.ui.RegisterActivity"
 
             android:screenOrientation="portrait"
 
@@ -166,7 +163,7 @@
 
         <activity
 
-            android:name=".ui.ChatActivity"
+            android:name="cn.ucai.superwechat.ui.ChatActivity"
 
             android:launchMode="singleTask"
 
@@ -180,7 +177,7 @@
 
         <activity
 
-            android:name=".ui.AddContactActivity"
+            android:name="cn.ucai.superwechat.ui.AddContactActivity"
 
             android:screenOrientation="portrait"
 
@@ -192,7 +189,7 @@
 
         <activity
 
-            android:name=".ui.GroupDetailsActivity"
+            android:name="cn.ucai.superwechat.ui.GroupDetailsActivity"
 
             android:screenOrientation="portrait"
 
@@ -202,7 +199,7 @@
 
         <activity
 
-            android:name=".ui.GroupsActivity"
+            android:name="cn.ucai.superwechat.ui.GroupsActivity"
 
             android:screenOrientation="portrait"
 
@@ -216,7 +213,7 @@
 
         <activity
 
-            android:name=".ui.ChatRoomDetailsActivity"
+            android:name="cn.ucai.superwechat.ui.ChatRoomDetailsActivity"
 
             android:screenOrientation="portrait"
 
@@ -228,7 +225,7 @@
 
         <activity
 
-            android:name=".ui.NewGroupActivity"
+            android:name="cn.ucai.superwechat.ui.NewGroupActivity"
 
             android:screenOrientation="portrait"
 
@@ -240,7 +237,7 @@
 
         <activity
 
-            android:name=".ui.ExitGroupDialog"
+            android:name="cn.ucai.superwechat.ui.ExitGroupDialog"
 
             android:screenOrientation="portrait"
 
@@ -250,7 +247,7 @@
 
         <activity
 
-            android:name=".ui.GroupPickContactsActivity"
+            android:name="cn.ucai.superwechat.ui.GroupPickContactsActivity"
 
             android:screenOrientation="portrait"
 
@@ -260,7 +257,7 @@
 
         <activity
 
-            android:name=".ui.PickAtUserActivity"
+            android:name="cn.ucai.superwechat.ui.PickAtUserActivity"
 
             android:screenOrientation="portrait"
 
@@ -282,7 +279,7 @@
 
         <activity
 
-            android:name=".ui.NewFriendsMsgActivity"
+            android:name="cn.ucai.superwechat.ui.NewFriendsMsgActivity"
 
             android:screenOrientation="portrait"
 
@@ -292,7 +289,7 @@
 
         <activity
 
-            android:name=".ui.ForwardMessageActivity"
+            android:name="cn.ucai.superwechat.ui.ForwardMessageActivity"
 
             android:screenOrientation="portrait"
 
@@ -304,7 +301,7 @@
 
         <activity
 
-            android:name=".ui.ContextMenuActivity"
+            android:name="cn.ucai.superwechat.ui.ContextMenuActivity"
 
             android:screenOrientation="portrait"
 
@@ -334,7 +331,7 @@
 
         <activity
 
-            android:name=".ui.BlacklistActivity"
+            android:name="cn.ucai.superwechat.ui.BlacklistActivity"
 
             android:screenOrientation="portrait"
 
@@ -346,7 +343,7 @@
 
         <activity
 
-            android:name=".ui.PublicGroupsActivity"
+            android:name="cn.ucai.superwechat.ui.PublicGroupsActivity"
 
             android:screenOrientation="portrait"
 
@@ -356,7 +353,7 @@
 
         <activity
 
-            android:name=".ui.PublicChatRoomsActivity"
+            android:name="cn.ucai.superwechat.ui.PublicChatRoomsActivity"
 
             android:screenOrientation="portrait"
 
@@ -370,7 +367,7 @@
 
         <activity
 
-            android:name=".ui.VoiceCallActivity"
+            android:name="cn.ucai.superwechat.ui.VoiceCallActivity"
 
             android:launchMode="singleTask"
 
@@ -382,7 +379,7 @@
 
         <activity
 
-            android:name=".ui.VideoCallActivity"
+            android:name="cn.ucai.superwechat.ui.VideoCallActivity"
 
             android:configChanges="orientation|keyboardHidden|screenSize"
 
@@ -396,7 +393,7 @@
 
         <activity
 
-            android:name=".ui.GroupSimpleDetailActivity"
+            android:name="cn.ucai.superwechat.ui.GroupSimpleDetailActivity"
 
             android:screenOrientation="portrait"
 
@@ -406,7 +403,7 @@
 
         <activity
 
-            android:name=".ui.GroupBlacklistActivity"
+            android:name="cn.ucai.superwechat.ui.GroupBlacklistActivity"
 
             android:screenOrientation="portrait"
 
@@ -414,7 +411,7 @@
 
         <activity
 
-            android:name=".ui.GroupSearchMessageActivity"
+            android:name="cn.ucai.superwechat.ui.GroupSearchMessageActivity"
 
             android:screenOrientation="portrait"
 
@@ -424,7 +421,7 @@
 
         <activity
 
-            android:name=".ui.PublicGroupsSeachActivity"
+            android:name="cn.ucai.superwechat.ui.PublicGroupsSeachActivity"
 
             android:screenOrientation="portrait"
 
@@ -432,7 +429,7 @@
 
         <activity
 
-            android:name=".ui.EditActivity"
+            android:name="cn.ucai.superwechat.ui.EditActivity"
 
             android:screenOrientation="portrait"
 
@@ -454,7 +451,7 @@
 
         <activity
 
-            android:name=".ui.ImageGridActivity"
+            android:name="cn.ucai.superwechat.ui.ImageGridActivity"
 
             android:screenOrientation="portrait"
 
@@ -464,7 +461,7 @@
 
         <activity
 
-            android:name=".ui.RecorderVideoActivity"
+            android:name="cn.ucai.superwechat.ui.RecorderVideoActivity"
 
             android:screenOrientation="portrait"
 
@@ -476,7 +473,7 @@
 
         <activity
 
-            android:name=".ui.DiagnoseActivity"
+            android:name="cn.ucai.superwechat.ui.DiagnoseActivity"
 
             android:screenOrientation="portrait"
 
@@ -490,7 +487,7 @@
 
         <activity
 
-            android:name=".ui.OfflinePushNickActivity"
+            android:name="cn.ucai.superwechat.ui.OfflinePushNickActivity"
 
             android:screenOrientation="portrait"
 
@@ -502,7 +499,7 @@
 
         <activity
 
-            android:name=".ui.RobotsActivity"
+            android:name="cn.ucai.superwechat.ui.RobotsActivity"
 
             android:screenOrientation="portrait"
 
@@ -514,7 +511,7 @@
 
         <activity
 
-            android:name=".ui.UserProfileActivity"
+            android:name="cn.ucai.superwechat.ui.UserProfileActivity"
 
             android:screenOrientation="portrait"
 
@@ -522,7 +519,7 @@
 
 
 
-        <activity android:name=".ui.SetServersActivity"
+        <activity android:name="cn.ucai.superwechat.ui.SetServersActivity"
 
             android:screenOrientation="portrait"
 
@@ -640,7 +637,7 @@
 
         <!-- 开机自启动服务 -->
 
-        <receiver android:name=".receiver.StartServiceReceiver">
+        <receiver android:name="cn.ucai.superwechat.receiver.StartServiceReceiver">
 
             <intent-filter android:priority="1000">
 
@@ -674,7 +671,7 @@
 
 
 
-                <category android:name="com.hyphenate.chatuidemo" />
+                <category android:name="cn.ucai.superwechat" />
 
             </intent-filter>
 
@@ -692,7 +689,7 @@
 
         <receiver
 
-            android:name=".receiver.GCMPushBroadCast"
+            android:name="cn.ucai.superwechat.receiver.GCMPushBroadCast"
 
             android:exported="false">
 
@@ -702,7 +699,7 @@
 
 
 
-                <category android:name="com.hyphenate.chatuidemo" />
+                <category android:name="cn.ucai.superwechat" />
 
             </intent-filter>
 
@@ -937,4 +934,7 @@
 
 
     </application>
+
+
+
 </manifest>
