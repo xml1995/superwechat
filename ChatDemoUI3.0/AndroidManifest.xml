@@ -11,6 +11,8 @@
         tools:overrideLibrary="com.easemob.redpacketui" />
 
 
+
+
     <uses-permission android:name="android.permission.VIBRATE"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -89,7 +91,7 @@
 
     <application
 
-        android:name=".DemoApplication"
+        android:name=".SuperWeChatApplication"
 
         android:allowBackup="true"
 
