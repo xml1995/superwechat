@@ -21,12 +21,14 @@ import com.hyphenate.chat.EMClient;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.SuperWeChatHelper;
 
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.MFGT;
 
 import com.hyphenate.exceptions.HyphenateException;
@@ -202,13 +204,31 @@ public class RegisterActivity extends BaseActivity {
 
 			public void onSuccess(Result result) {
 
-				if(result!=null&&result.isRetMsg()){
+				if(result==null){
 
-					registerEMServer();
+					pd.dismiss();
 
-				}else{
+				}else {
 
-					unregisterAppServer();
+					if (result.isRetMsg()) {
+
+						registerEMServer();
+
+					} else {
+
+						if(result.getRetCode()== I.MSG_REGISTER_USERNAME_EXISTS){
+
+							CommonUtils.showMsgShortToast(result.getRetCode());
+
+							pd.dismiss();
+
+						}else {
+
+							unregisterAppServer();
+
+						}
+
+					}
 
 				}
 
