@@ -1,33 +1,66 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
+
     repositories {
+
         jcenter()
+
     }
+
     dependencies {
+
         classpath 'com.android.tools.build:gradle:2.2.0'
+
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
     }
+
 }
+
+
 
 allprojects {
+
     repositories {
+
         jcenter()
+
     }
+
 }
 
+
+
 apply plugin: 'com.android.application'
+
+apply plugin: 'android-apt'
+
+
 
 
 
 android {
+
     compileSdkVersion 23
+
     buildToolsVersion "23.0.1"
 
+
+
     defaultConfig {
+
         applicationId "cn.ucai.superwechat"
+
         minSdkVersion 11
+
         targetSdkVersion 22
+
         multiDexEnabled true
+
     }
+
+
 
     sourceSets {
 
@@ -112,5 +145,19 @@ dependencies {
 //    }
 
     compile 'com.android.support:appcompat-v7:23.4.0'
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
+    compile 'com.squareup.okio:okio:1.10.0'
+
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.4.1'
+
+    compile 'com.google.code.gson:gson:2.7'
+
+
 
 }

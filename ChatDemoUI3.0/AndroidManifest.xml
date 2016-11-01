@@ -9,6 +9,8 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="22"
         tools:overrideLibrary="com.easemob.redpacketui" />
+
+
     <uses-permission android:name="android.permission.VIBRATE"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -861,7 +863,7 @@
 
             android:name="EASEMOB_APPKEY"
 
-            android:value="easemob-demo#chatdemoui"/>
+            android:value="i#superwechat201607"/>
 
         <!-- 声明sdk所需的service -->
 
