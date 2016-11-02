@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-
-    <!-- Main-->
-
-    <string name="app_name">微信</string>
+    <string name="wechat">微信</string>
 
     <string name="contacts">通讯录</string>
 
@@ -32,11 +27,6 @@
     <string name="menu_qrcode">扫一扫</string>
 
     <string name="menu_money">微信钱包</string>
-
-
-
-    <!-- Login-->
-
     <string name="countries_and_areas">国家和地区</string>
 
     <string name="login_txt_china">中国</string>

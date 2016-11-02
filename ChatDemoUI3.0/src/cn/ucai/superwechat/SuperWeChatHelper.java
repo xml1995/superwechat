@@ -126,13 +126,6 @@ import cn.ucai.superwechat.utils.PreferenceManager;
 
 
 public class SuperWeChatHelper {
-
-    /**
-
-     * data sync listener
-
-     */
-
     public interface DataSyncListener {
 
         /**
@@ -776,16 +769,11 @@ public class SuperWeChatHelper {
                         asyncFetchGroupsFromServer(null);
 
                     }
-
-
-
                     if (!isContactsSyncedWithServer) {
 
                         asyncFetchContactsFromServer(null);
 
                     }
-
-
 
                     if (!isBlackListSyncedWithServer) {
 
@@ -1685,18 +1673,6 @@ public class SuperWeChatHelper {
 
     }
 
-
-
-    /**
-
-     * update contact list
-
-     *
-
-     * @param contactList
-
-     */
-
     public void setContactList(Map<String, EaseUser> aContactList) {
 
         if(aContactList == null){
@@ -1717,14 +1693,6 @@ public class SuperWeChatHelper {
 
     }
 
-
-
-    /**
-
-     * save single contact
-
-     */
-
     public void saveContact(EaseUser user){
 
         contactList.put(user.getUsername(), user);
@@ -1732,18 +1700,6 @@ public class SuperWeChatHelper {
         demoModel.saveContact(user);
 
     }
-
-
-
-    /**
-
-     * get contact list
-
-     *
-
-     * @return
-
-     */
 
     public Map<String, EaseUser> getContactList() {
 
@@ -1770,15 +1726,6 @@ public class SuperWeChatHelper {
     }
 
 
-
-    /**
-
-     * set current username
-
-     * @param username
-
-     */
-
     public void setCurrentUserName(String username){
 
         this.username = username;
@@ -1787,14 +1734,6 @@ public class SuperWeChatHelper {
 
     }
 
-
-
-    /**
-
-     * get current user's id
-
-     */
-
     public String getCurrentUsernName(){
 
         if(username == null){
@@ -1802,21 +1741,14 @@ public class SuperWeChatHelper {
             username = demoModel.getCurrentUsernName();
 
         }
-
         return username;
 
     }
-
-
-
     public void setRobotList(Map<String, RobotUser> robotList) {
 
         this.robotList = robotList;
 
     }
-
-
-
     public Map<String, RobotUser> getRobotList() {
 
         if (isLoggedIn() && robotList == null) {
@@ -1829,17 +1761,6 @@ public class SuperWeChatHelper {
 
     }
 
-
-
-    /**
-
-     * update user list to cache and database
-
-     *
-
-     * @param contactList
-
-     */
 
     public void updateContactList(List<EaseUser> contactInfoList) {
 

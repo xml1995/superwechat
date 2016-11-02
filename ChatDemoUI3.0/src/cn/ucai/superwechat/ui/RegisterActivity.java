@@ -13,28 +13,6 @@
  */
 package cn.ucai.superwechat.ui;
 
-
-import com.hyphenate.EMError;
-
-import com.hyphenate.chat.EMClient;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import cn.ucai.superwechat.I;
-import cn.ucai.superwechat.SuperWeChatHelper;
-
-import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.bean.Result;
-import cn.ucai.superwechat.data.NetDao;
-import cn.ucai.superwechat.data.OkHttpUtils;
-import cn.ucai.superwechat.utils.CommonUtils;
-import cn.ucai.superwechat.utils.MFGT;
-
-import com.hyphenate.exceptions.HyphenateException;
-
-
-
 import android.app.ProgressDialog;
 
 import android.os.Bundle;
@@ -46,8 +24,55 @@ import android.view.View;
 import android.widget.EditText;
 
 import android.widget.ImageView;
+
 import android.widget.TextView;
+
 import android.widget.Toast;
+
+
+
+import com.hyphenate.EMError;
+
+import com.hyphenate.chat.EMClient;
+
+import com.hyphenate.exceptions.HyphenateException;
+
+
+
+import butterknife.BindView;
+
+import butterknife.ButterKnife;
+
+import butterknife.OnClick;
+
+import cn.ucai.superwechat.I;
+
+import cn.ucai.superwechat.R;
+
+import cn.ucai.superwechat.SuperWeChatHelper;
+
+import cn.ucai.superwechat.bean.Result;
+
+import cn.ucai.superwechat.data.NetDao;
+
+import cn.ucai.superwechat.data.OkHttpUtils;
+
+import cn.ucai.superwechat.utils.CommonUtils;
+
+import cn.ucai.superwechat.utils.MD5;
+
+import cn.ucai.superwechat.utils.MFGT;
+
+
+
+/**
+
+ * register screen
+
+ *
+
+ */
+
 public class RegisterActivity extends BaseActivity {
 
 	@BindView(R.id.img_back)
@@ -288,7 +313,7 @@ public class RegisterActivity extends BaseActivity {
 
 					// call method in SDK
 
-					EMClient.getInstance().createAccount(username, pwd);
+					EMClient.getInstance().createAccount(username, MD5.getMessageDigest(pwd));
 
 					runOnUiThread(new Runnable() {
 
