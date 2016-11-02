@@ -1,6 +1,7 @@
 package cn.ucai.superwechat;
 
 
+
 import android.app.Activity;
 
 import android.content.BroadcastReceiver;
@@ -67,6 +68,8 @@ import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
 
 import com.hyphenate.easeui.domain.EaseUser;
 
+import com.hyphenate.easeui.domain.User;
+
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 
 import com.hyphenate.easeui.model.EaseNotifier;
@@ -95,9 +98,9 @@ import java.util.UUID;
 
 
 
-import cn.ucai.superwechat.db.SuperWeChatDBManager;
-
 import cn.ucai.superwechat.db.InviteMessgeDao;
+
+import cn.ucai.superwechat.db.SuperWeChatDBManager;
 
 import cn.ucai.superwechat.db.UserDao;
 
@@ -121,11 +124,20 @@ import cn.ucai.superwechat.ui.VideoCallActivity;
 
 import cn.ucai.superwechat.ui.VoiceCallActivity;
 
+import cn.ucai.superwechat.utils.L;
+
 import cn.ucai.superwechat.utils.PreferenceManager;
 
 
 
 public class SuperWeChatHelper {
+
+    /**
+
+     * data sync listener
+
+     */
+
     public interface DataSyncListener {
 
         /**
@@ -177,6 +189,10 @@ public class SuperWeChatHelper {
 
 
     private SuperWeChatModel demoModel = null;
+
+
+
+    private User currentUser = null;
 
 
 
@@ -769,11 +785,16 @@ public class SuperWeChatHelper {
                         asyncFetchGroupsFromServer(null);
 
                     }
+
+
+
                     if (!isContactsSyncedWithServer) {
 
                         asyncFetchContactsFromServer(null);
 
                     }
+
+
 
                     if (!isBlackListSyncedWithServer) {
 
@@ -1673,6 +1694,7 @@ public class SuperWeChatHelper {
 
     }
 
+
     public void setContactList(Map<String, EaseUser> aContactList) {
 
         if(aContactList == null){
@@ -1693,6 +1715,14 @@ public class SuperWeChatHelper {
 
     }
 
+
+
+    /**
+
+     * save single contact
+
+     */
+
     public void saveContact(EaseUser user){
 
         contactList.put(user.getUsername(), user);
@@ -1700,6 +1730,18 @@ public class SuperWeChatHelper {
         demoModel.saveContact(user);
 
     }
+
+
+
+    /**
+
+     * get contact list
+
+     *
+
+     * @return
+
+     */
 
     public Map<String, EaseUser> getContactList() {
 
@@ -1726,6 +1768,15 @@ public class SuperWeChatHelper {
     }
 
 
+
+    /**
+
+     * set current username
+
+     * @param username
+
+     */
+
     public void setCurrentUserName(String username){
 
         this.username = username;
@@ -1734,6 +1785,14 @@ public class SuperWeChatHelper {
 
     }
 
+
+
+    /**
+
+     * get current user's id
+
+     */
+
     public String getCurrentUsernName(){
 
         if(username == null){
@@ -1741,14 +1800,21 @@ public class SuperWeChatHelper {
             username = demoModel.getCurrentUsernName();
 
         }
+
         return username;
 
     }
+
+
+
     public void setRobotList(Map<String, RobotUser> robotList) {
 
         this.robotList = robotList;
 
     }
+
+
+
     public Map<String, RobotUser> getRobotList() {
 
         if (isLoggedIn() && robotList == null) {
@@ -2403,5 +2469,29 @@ public class SuperWeChatHelper {
     }
 
 
+
+    public User getCurrentUser() {
+
+        if(currentUser==null){
+
+            String username = EMClient.getInstance().getCurrentUser();
+
+            L.e(TAG,"getCurrentUsername="+username);
+
+            currentUser = new User(username);
+
+        }
+
+        return currentUser;
+
+    }
+
+
+
+    public void setCurrentUser(User currentUser) {
+
+        this.currentUser = currentUser;
+
+    }
 
 }
