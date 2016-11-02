@@ -440,6 +440,16 @@ public class SuperWeChatHelper {
 
             }
 
+
+
+            @Override
+
+            public User getAppUser(String username) {
+
+                return null;
+
+            }
+
         });
 
 
@@ -1693,7 +1703,6 @@ public class SuperWeChatHelper {
         return (SuperWeChatModel) demoModel;
 
     }
-
 
     public void setContactList(Map<String, EaseUser> aContactList) {
 

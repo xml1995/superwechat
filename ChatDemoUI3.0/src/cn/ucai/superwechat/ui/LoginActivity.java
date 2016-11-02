@@ -274,7 +274,7 @@ public class LoginActivity extends BaseActivity {
 
 		progressShow = true;
 
-		pd = new ProgressDialog(LoginActivity.this);
+		pd = new ProgressDialog(mContext);
 
 		pd.setCanceledOnTouchOutside(false);
 
@@ -428,6 +428,10 @@ public class LoginActivity extends BaseActivity {
 
 					}
 
+				}else{
+
+					pd.dismiss();
+
 				}
 
 			}
@@ -543,6 +547,18 @@ public class LoginActivity extends BaseActivity {
 				break;
 
 		}
+
+	}
+
+
+
+	@Override
+
+	protected void onDestroy() {
+
+		super.onDestroy();
+
+		pd.dismiss();
 
 	}
 
