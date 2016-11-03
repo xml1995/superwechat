@@ -128,7 +128,6 @@ import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.PreferenceManager;
 
 
-
 public class SuperWeChatHelper {
 
     /**
@@ -1487,6 +1486,8 @@ public class SuperWeChatHelper {
 
         }
 
+        L.e(TAG,"user="+user);
+
         return user;
 
     }
@@ -2503,7 +2504,11 @@ public class SuperWeChatHelper {
 
 
 
+        currentUser = null;
+
         setContactList(null);
+
+        setAppContactList(null);
 
         setRobotList(null);
 
@@ -2617,6 +2622,8 @@ public class SuperWeChatHelper {
 
     public Map<String, User> getAppContactList() {
 
+        L.e(TAG,"getAppContactList,appContactList="+appContactList);
+
         if (isLoggedIn() && appContactList == null) {
 
             appContactList = demoModel.getAppContactList();
@@ -2634,6 +2641,8 @@ public class SuperWeChatHelper {
         }
 
 
+
+        L.e(TAG,"getAppContactList,appContactList="+appContactList.size());
 
         return appContactList;
 
