@@ -12,9 +12,6 @@
  * limitations under the License.
  */
 package cn.ucai.superwechat.ui;
-
-
-
 import android.app.ProgressDialog;
 
 import android.content.DialogInterface;
@@ -413,9 +410,7 @@ public class LoginActivity extends BaseActivity {
 
 							UserDao dao = new UserDao(mContext);
 
-							dao.saveUser(user);
-
-							SuperWeChatHelper.getInstance().setCurrentUser(user);
+							dao.saveAppContact(user);
 
 							loginSuccess();
 
@@ -519,10 +514,13 @@ public class LoginActivity extends BaseActivity {
 
 		}
 
+		if (SuperWeChatHelper.getInstance().getCurrentUsernName() != null) {
+
+			mEtUsername.setText(SuperWeChatHelper.getInstance().getCurrentUsernName());
+
+		}
+
 	}
-
-
-
 	@OnClick({R.id.img_back, R.id.btn_login, R.id.btn_register})
 
 	public void onClick(View view) {
@@ -550,9 +548,6 @@ public class LoginActivity extends BaseActivity {
 		}
 
 	}
-
-
-
 	@Override
 
 	protected void onDestroy() {
@@ -566,5 +561,7 @@ public class LoginActivity extends BaseActivity {
 		}
 
 	}
+
+
 
 }
