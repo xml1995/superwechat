@@ -14,6 +14,7 @@
 package cn.ucai.superwechat.ui;
 
 
+
 import android.app.ProgressDialog;
 
 import android.content.DialogInterface;
@@ -558,7 +559,11 @@ public class LoginActivity extends BaseActivity {
 
 		super.onDestroy();
 
-		pd.dismiss();
+		if(pd!=null) {
+
+			pd.dismiss();
+
+		}
 
 	}
 
