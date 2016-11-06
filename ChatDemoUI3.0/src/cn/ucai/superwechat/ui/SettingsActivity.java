@@ -1,53 +1,26 @@
 package cn.ucai.superwechat.ui;
+
 import android.app.ProgressDialog;
-
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.text.TextUtils;
-
 import android.view.View;
-
 import android.view.View.OnClickListener;
-
 import android.widget.Button;
-
 import android.widget.ImageView;
-
 import android.widget.LinearLayout;
-
 import android.widget.RelativeLayout;
-
 import android.widget.TextView;
-
 import android.widget.Toast;
-
-
-
 import com.hyphenate.EMCallBack;
-
 import com.hyphenate.chat.EMClient;
-
 import com.hyphenate.chat.EMOptions;
-
-import com.hyphenate.easeui.utils.ExitAppUtils;
 import com.hyphenate.easeui.widget.EaseSwitchButton;
-
 import com.hyphenate.util.EMLog;
-
-
-
 import cn.ucai.superwechat.R;
-
 import cn.ucai.superwechat.SuperWeChatHelper;
-
 import cn.ucai.superwechat.SuperWeChatModel;
-
 import cn.ucai.superwechat.utils.MFGT;
-
-
-
 /**
 
  * settings screen
@@ -59,11 +32,8 @@ import cn.ucai.superwechat.utils.MFGT;
  */
 
 @SuppressWarnings({"FieldCanBeLocal"})
-
 public class SettingsActivity extends BaseActivity implements OnClickListener {
-
-
-
+    private static final String TAG = SettingsActivity.class.getSimpleName();
     /**
 
      * new message notification
@@ -95,11 +65,6 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
      */
 
     private RelativeLayout rl_switch_speaker;
-
-
-
-
-
     /**
 
      * line between sound and vibration
@@ -107,17 +72,8 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
      */
 
     private TextView textview1, textview2;
-
-
-
     private LinearLayout blacklistContainer;
-
-
-
     private LinearLayout userProfileContainer;
-
-
-
     /**
 
      * logout
@@ -125,23 +81,11 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
      */
 
     private Button logoutBtn;
-
-
-
     private RelativeLayout rl_switch_chatroom_leave;
-
-
-
     private RelativeLayout rl_switch_delete_msg_when_exit_group;
-
     private RelativeLayout rl_switch_auto_accept_group_invitation;
-
     private RelativeLayout rl_switch_adaptive_video_encode;
-
     private RelativeLayout rl_custom_server;
-
-
-
     /**
 
      * Diagnose
@@ -157,35 +101,17 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
      */
 
     private LinearLayout pushNick;
-
-
-
     private EaseSwitchButton notifiSwitch;
-
     private EaseSwitchButton soundSwitch;
-
     private EaseSwitchButton vibrateSwitch;
-
     private EaseSwitchButton speakerSwitch;
-
     private EaseSwitchButton ownerLeaveSwitch;
-
     private EaseSwitchButton switch_delete_msg_when_exit_group;
-
     private EaseSwitchButton switch_auto_accept_group_invitation;
-
     private EaseSwitchButton switch_adaptive_video_encode;
-
     private EaseSwitchButton customServerSwitch;
-
-
-
     private SuperWeChatModel settingsModel;
-
     private EMOptions chatOptions;
-
-
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -730,11 +656,13 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 
                         // show login screen
 
-                        ExitAppUtils.getInstance().exit();
+//						ExitAppUtils.getInstance().exit();
 
-//						finish();
+                        finish();
 
-                        startActivity(new Intent(SettingsActivity.this, LoginActivity.class));
+                        startActivity(new Intent(SettingsActivity.this, LoginActivity.class)
+
+                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
 
 

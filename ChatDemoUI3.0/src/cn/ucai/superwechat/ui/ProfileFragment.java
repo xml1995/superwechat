@@ -1,5 +1,4 @@
 package cn.ucai.superwechat.ui;
-
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -109,6 +108,8 @@ public class ProfileFragment extends Fragment {
         switch (view.getId()) {
 
             case R.id.layout_profile_view:
+
+                MFGT.gotoUserProfile(getActivity());
 
                 break;
 
