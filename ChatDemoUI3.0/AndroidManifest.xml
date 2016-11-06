@@ -61,6 +61,7 @@
 
 
 
+
     <permission
 
         android:name="cn.ucai.superwechat.permission.C2D_MESSAGE"
@@ -78,8 +79,17 @@
         android:name="cn.ucai.superwechat.permission.MIPUSH_RECEIVE"
 
         android:protectionLevel="signature"/>
+
+
+
     <uses-permission android:name="cn.ucai.superwechat.permission.MIPUSH_RECEIVE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+
     <application
 
         android:name=".SuperWeChatApplication"
@@ -517,6 +527,14 @@
         <activity
 
             android:name=".ui.SetServersActivity"
+
+            android:screenOrientation="portrait"
+
+            android:theme="@style/horizontal_slide"/>
+
+        <activity
+
+            android:name=".ui.SettingsActivity"
 
             android:screenOrientation="portrait"
 

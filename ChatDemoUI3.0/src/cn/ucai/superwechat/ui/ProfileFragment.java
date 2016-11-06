@@ -1,6 +1,5 @@
 package cn.ucai.superwechat.ui;
 
-
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -32,6 +31,8 @@ import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
 
 import cn.ucai.superwechat.R;
+
+import cn.ucai.superwechat.utils.MFGT;
 
 
 
@@ -122,6 +123,8 @@ public class ProfileFragment extends Fragment {
             //end of red packet code
 
             case R.id.tv_profile_settings:
+
+                MFGT.gotoSettings(getActivity());
 
                 break;
 

@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 package cn.ucai.superwechat.ui;
+
+
 import android.app.ProgressDialog;
 
 import android.content.Intent;
@@ -42,25 +44,25 @@ import android.widget.Toast;
 
 
 
-import com.easemob.redpacketui.utils.RedPacketUtil;
-
 import com.hyphenate.EMCallBack;
 
 import com.hyphenate.chat.EMClient;
 
 import com.hyphenate.chat.EMOptions;
 
+import com.hyphenate.easeui.widget.EaseSwitchButton;
+
+import com.hyphenate.util.EMLog;
+
+
+
 import cn.ucai.superwechat.Constant;
+
+import cn.ucai.superwechat.R;
 
 import cn.ucai.superwechat.SuperWeChatHelper;
 
 import cn.ucai.superwechat.SuperWeChatModel;
-
-import cn.ucai.superwechat.R;
-
-import com.hyphenate.easeui.widget.EaseSwitchButton;
-
-import com.hyphenate.util.EMLog;
 
 
 
@@ -258,8 +260,6 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 
 		switch_adaptive_video_encode = (EaseSwitchButton) getView().findViewById(R.id.switch_adaptive_video_encode);
 
-		LinearLayout llChange = (LinearLayout) getView().findViewById(R.id.ll_change);
-
 		logoutBtn = (Button) getView().findViewById(R.id.btn_logout);
 
 		if(!TextUtils.isEmpty(EMClient.getInstance().getCurrentUser())){
@@ -323,8 +323,6 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 		rl_switch_auto_accept_group_invitation.setOnClickListener(this);
 
 		rl_switch_adaptive_video_encode.setOnClickListener(this);
-
-		llChange.setOnClickListener(this);
 
 
 
@@ -461,16 +459,6 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-
-			//red packet code : 进入零钱页面
-
-			case R.id.ll_change:
-
-				RedPacketUtil.startChangeActivity(getActivity());
-
-				break;
-
-			//end of red packet code
 
 			case R.id.rl_switch_notification:
 
