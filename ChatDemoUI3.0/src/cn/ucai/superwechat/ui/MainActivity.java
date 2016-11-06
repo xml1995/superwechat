@@ -420,7 +420,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 		adapter.addFragment(new DiscoverFragment(),getString(R.string.discover));
 
-		adapter.addFragment(new SettingsFragment(),getString(R.string.me));
+		adapter.addFragment(new ProfileFragment(),getString(R.string.me));
 
 		adapter.notifyDataSetChanged();
 

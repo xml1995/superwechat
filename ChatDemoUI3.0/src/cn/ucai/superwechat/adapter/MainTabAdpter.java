@@ -1,38 +1,14 @@
 package cn.ucai.superwechat.adapter;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.app.FragmentManager;
-
 import android.support.v4.app.FragmentStatePagerAdapter;
-
 import android.support.v4.view.PagerAdapter;
-
-
-
 import java.util.ArrayList;
-
 import java.util.List;
-
-
-
-/**
-
- * Created by clawpo on 2016/9/22.
-
- */
-
 public class MainTabAdpter extends FragmentStatePagerAdapter {
-
-
-
     private final List<Fragment> mFragments = new ArrayList<>();
-
     private final List<String> mFragmentTitles = new ArrayList<>();
-
     private FragmentManager fm;
-
-
-
     public MainTabAdpter(FragmentManager fm) {
 
         super(fm);
@@ -42,9 +18,6 @@ public class MainTabAdpter extends FragmentStatePagerAdapter {
         this.saveState();
 
     }
-
-
-
     public void addFragment(Fragment fragment, String title) {
 
         mFragments.add(fragment);
@@ -64,11 +37,6 @@ public class MainTabAdpter extends FragmentStatePagerAdapter {
         notifyDataSetChanged();
 
     }
-
-
-
-
-
     @Override
 
     public Fragment getItem(int position) {
@@ -76,9 +44,6 @@ public class MainTabAdpter extends FragmentStatePagerAdapter {
         return mFragments.get(position);
 
     }
-
-
-
     @Override
 
     public int getCount() {
@@ -86,9 +51,6 @@ public class MainTabAdpter extends FragmentStatePagerAdapter {
         return mFragments.size();
 
     }
-
-
-
     @Override
 
     public CharSequence getPageTitle(int position) {
@@ -96,9 +58,6 @@ public class MainTabAdpter extends FragmentStatePagerAdapter {
         return mFragmentTitles.get(position);
 
     }
-
-
-
     @Override
 
     public int getItemPosition(Object object) {
