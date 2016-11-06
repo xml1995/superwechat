@@ -289,4 +289,6 @@
 
     <string name="User_name_cannot_be_modify">user name connot be modify</string>
 
+    <string name="toast_nick_not_modify">nick name notmodify</string>
+
 </resources>

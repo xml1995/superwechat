@@ -2,6 +2,7 @@ package com.hyphenate.easeui.utils;
 
 
 
+
 import android.content.Context;
 
 import android.support.v4.app.FragmentActivity;
@@ -73,6 +74,22 @@ public class EaseUserUtils {
     }
 
     public static User getAppUserInfo(String username){
+
+        if(userProvider != null)
+
+            return userProvider.getAppUser(username);
+
+
+
+        return null;
+
+    }
+
+
+
+    public static User getCurrentAppUserInfo(){
+
+        String username = EMClient.getInstance().getCurrentUser();
 
         if(userProvider != null)
 

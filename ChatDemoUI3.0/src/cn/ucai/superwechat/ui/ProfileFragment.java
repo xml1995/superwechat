@@ -1,5 +1,4 @@
-package cn.ucai.superwechat.ui;
-import android.os.Bundle;
+package cn.ucai.superwechat.ui;import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 
@@ -150,6 +149,18 @@ public class ProfileFragment extends Fragment {
             outState.putBoolean(Constant.ACCOUNT_REMOVED, true);
 
         }
+
+    }
+
+
+
+    @Override
+
+    public void onResume() {
+
+        super.onResume();
+
+        setUserInfo();
 
     }
 
