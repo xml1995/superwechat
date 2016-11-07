@@ -13,34 +13,6 @@
  */
 package cn.ucai.superwechat.ui;
 
-import java.util.Hashtable;
-
-import java.util.Map;
-
-
-
-import com.hyphenate.chat.EMClient;
-
-import cn.ucai.superwechat.SuperWeChatHelper;
-
-
-
-import cn.ucai.superwechat.R;
-
-import cn.ucai.superwechat.db.InviteMessgeDao;
-
-import cn.ucai.superwechat.db.UserDao;
-
-import cn.ucai.superwechat.widget.ContactItemView;
-
-import com.hyphenate.easeui.domain.EaseUser;
-
-import com.hyphenate.easeui.ui.EaseContactListFragment;
-
-import com.hyphenate.util.EMLog;
-
-import com.hyphenate.util.NetUtils;
-
 
 
 import android.annotation.SuppressLint;
@@ -68,6 +40,36 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 import android.widget.Toast;
+
+
+
+import com.hyphenate.chat.EMClient;
+
+import com.hyphenate.easeui.domain.EaseUser;
+
+import com.hyphenate.easeui.ui.EaseContactListFragment;
+
+import com.hyphenate.util.EMLog;
+
+import com.hyphenate.util.NetUtils;
+
+
+
+import java.util.Hashtable;
+
+import java.util.Map;
+
+
+
+import cn.ucai.superwechat.R;
+
+import cn.ucai.superwechat.SuperWeChatHelper;
+
+import cn.ucai.superwechat.db.InviteMessgeDao;
+
+import cn.ucai.superwechat.db.UserDao;
+
+import cn.ucai.superwechat.widget.ContactItemView;
 
 
 
@@ -117,9 +119,9 @@ public class ContactListFragment extends EaseContactListFragment {
 
         headerView.findViewById(R.id.group_item).setOnClickListener(clickListener);
 
-        headerView.findViewById(R.id.chat_room_item).setOnClickListener(clickListener);
+//        headerView.findViewById(R.id.chat_room_item).setOnClickListener(clickListener);
 
-        headerView.findViewById(R.id.robot_item).setOnClickListener(clickListener);
+//        headerView.findViewById(R.id.robot_item).setOnClickListener(clickListener);
 
         listView.addHeaderView(headerView);
 
@@ -200,6 +202,10 @@ public class ContactListFragment extends EaseContactListFragment {
             }
 
         });
+
+        titleBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+        titleBar.setVisibility(View.GONE);
 
         //设置联系人数据
 
@@ -357,21 +363,21 @@ public class ContactListFragment extends EaseContactListFragment {
 
                     break;
 
-                case R.id.chat_room_item:
+//            case R.id.chat_room_item:
 
-                    //进入聊天室列表页面
+//                //进入聊天室列表页面
 
-                    startActivity(new Intent(getActivity(), PublicChatRoomsActivity.class));
+//                startActivity(new Intent(getActivity(), PublicChatRoomsActivity.class));
 
-                    break;
+//                break;
 
-                case R.id.robot_item:
+//            case R.id.robot_item:
 
-                    //进入Robot列表页面
+//                //进入Robot列表页面
 
-                    startActivity(new Intent(getActivity(), RobotsActivity.class));
+//                startActivity(new Intent(getActivity(), RobotsActivity.class));
 
-                    break;
+//                break;
 
 
 
@@ -444,6 +450,21 @@ public class ContactListFragment extends EaseContactListFragment {
         return super.onContextItemSelected(item);
 
     }
+
+
+
+
+
+    /**
+
+     * delete contact
+
+     *
+
+     * @param tobeDeleteUser
+
+     */
+
     public void deleteContact(final EaseUser tobeDeleteUser) {
 
         String st1 = getResources().getString(R.string.deleting);
