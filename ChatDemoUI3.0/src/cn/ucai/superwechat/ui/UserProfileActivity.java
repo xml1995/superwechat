@@ -1,6 +1,5 @@
 package cn.ucai.superwechat.ui;
 
-
 import android.app.AlertDialog.Builder;
 
 import android.app.ProgressDialog;
@@ -493,6 +492,10 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 					if(result!=null && result.isRetMsg()){
 
+						User u = (User) result.getRetData();
+
+						SuperWeChatHelper.getInstance().saveAppContact(u);
+
 						setPicToView(picData);
 
 					}else{
@@ -583,7 +586,13 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 			mIvUserinfoAvatar.setImageDrawable(drawable);
 
-			uploadUserAvatar(Bitmap2Bytes(photo));
+			dialog.dismiss();
+
+			Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatephoto_success),
+
+					Toast.LENGTH_SHORT).show();
+
+//            uploadUserAvatar(Bitmap2Bytes(photo));
 
 		}
 

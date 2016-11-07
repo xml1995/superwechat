@@ -1,8 +1,6 @@
 package com.hyphenate.easeui.utils;
 
 
-
-
 import android.content.Context;
 
 import android.support.v4.app.FragmentActivity;
@@ -180,6 +178,8 @@ public class EaseUserUtils {
         User user = getAppUserInfo(username);
 
         if(user != null && user.getAvatar() != null){
+
+            Log.e(TAG,"setAppUserAvatar="+user.getAvatar());
 
             try {
 

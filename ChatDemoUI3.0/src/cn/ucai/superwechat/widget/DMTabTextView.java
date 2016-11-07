@@ -11,9 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.widget.RelativeLayout;
-
 import android.widget.TextView;
-
 
 
 import cn.ucai.superwechat.R;
