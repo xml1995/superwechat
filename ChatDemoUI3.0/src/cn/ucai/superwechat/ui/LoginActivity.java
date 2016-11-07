@@ -72,8 +72,6 @@ import cn.ucai.superwechat.data.OkHttpUtils;
 
 import cn.ucai.superwechat.db.SuperWeChatDBManager;
 
-import cn.ucai.superwechat.db.UserDao;
-
 import cn.ucai.superwechat.utils.L;
 
 import cn.ucai.superwechat.utils.MD5;
@@ -408,9 +406,7 @@ public class LoginActivity extends BaseActivity {
 
 						if(user!=null) {
 
-							UserDao dao = new UserDao(mContext);
-
-							dao.saveAppContact(user);
+							SuperWeChatHelper.getInstance().saveAppContact(user);
 
 							loginSuccess();
 
@@ -521,6 +517,9 @@ public class LoginActivity extends BaseActivity {
 		}
 
 	}
+
+
+
 	@OnClick({R.id.img_back, R.id.btn_login, R.id.btn_register})
 
 	public void onClick(View view) {
@@ -548,6 +547,9 @@ public class LoginActivity extends BaseActivity {
 		}
 
 	}
+
+
+
 	@Override
 
 	protected void onDestroy() {

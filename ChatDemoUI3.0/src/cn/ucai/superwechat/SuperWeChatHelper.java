@@ -1,4 +1,6 @@
 package cn.ucai.superwechat;
+
+
 import android.app.Activity;
 
 import android.content.BroadcastReceiver;
@@ -2571,7 +2573,7 @@ public class SuperWeChatHelper {
 
     public void saveAppContact(User user){
 
-        appContactList.put(user.getMUserName(), user);
+        getAppContactList().put(user.getMUserName(), user);
 
         demoModel.saveAppContact(user);
 

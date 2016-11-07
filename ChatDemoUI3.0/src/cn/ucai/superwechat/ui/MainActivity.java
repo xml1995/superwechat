@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 package cn.ucai.superwechat.ui;
+
+
 import android.annotation.SuppressLint;
 
 import android.annotation.TargetApi;
@@ -47,6 +49,8 @@ import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 
 import android.view.View;
+
+import android.view.ViewGroup;
 
 import android.widget.ImageView;
 
@@ -94,6 +98,8 @@ import butterknife.BindView;
 
 import butterknife.ButterKnife;
 
+import butterknife.OnClick;
+
 import cn.ucai.superwechat.Constant;
 
 import cn.ucai.superwechat.R;
@@ -106,9 +112,14 @@ import cn.ucai.superwechat.db.InviteMessgeDao;
 
 import cn.ucai.superwechat.db.UserDao;
 
+import cn.ucai.superwechat.dialog.TitleMenu.ActionItem;
+
+import cn.ucai.superwechat.dialog.TitleMenu.TitlePopup;
 import cn.ucai.superwechat.runtimepermissions.PermissionsManager;
 
 import cn.ucai.superwechat.runtimepermissions.PermissionsResultAction;
+
+import cn.ucai.superwechat.utils.MFGT;
 
 import cn.ucai.superwechat.widget.DMTabHost;
 
@@ -118,33 +129,11 @@ import cn.ucai.superwechat.widget.MFViewPager;
 
 @SuppressLint("NewApi")
 
-public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedChangeListener,ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
 
 
 
 	protected static final String TAG = "MainActivity";
-
-	//	// textview for unread message count
-
-//	private TextView unreadLabel;
-
-//	// textview for unread event message
-
-//	private TextView unreadAddressLable;
-
-//
-
-//	private Button[] mTabs;
-
-//	private ContactListFragment contactListFragment;
-
-//	private Fragment[] fragments;
-
-//	private int index;
-
-//	private int currentTabIndex;
-
-	// user logged into another device
 
 	public boolean isConflict = false;
 
@@ -171,6 +160,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 
 	MainTabAdpter adapter;
+
+
+
+	TitlePopup mTitlePopup;
 
 
 
@@ -385,23 +378,6 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 	 */
 
 	private void initView() {
-
-//		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
-
-//		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
-
-//		mTabs = new Button[3];
-
-//		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
-
-//		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
-
-//		mTabs[2] = (Button) findViewById(R.id.btn_setting);
-
-//		// select first tab
-
-//		mTabs[0].setSelected(true);
-
 		mTxtLeft.setVisibility(View.VISIBLE);
 
 		mImgRight.setVisibility(View.VISIBLE);
@@ -414,13 +390,13 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 		mLayoutViewpage.setOffscreenPageLimit(4);
 
-		adapter.addFragment(new ConversationListFragment(),getString(R.string.app_name));
+		adapter.addFragment(new ConversationListFragment(), getString(R.string.app_name));
 
-		adapter.addFragment(new ContactListFragment(),getString(R.string.contacts));
+		adapter.addFragment(new ContactListFragment(), getString(R.string.contacts));
 
-		adapter.addFragment(new DiscoverFragment(),getString(R.string.discover));
+		adapter.addFragment(new DiscoverFragment(), getString(R.string.discover));
 
-		adapter.addFragment(new ProfileFragment(),getString(R.string.me));
+		adapter.addFragment(new ProfileFragment(), getString(R.string.me));
 
 		adapter.notifyDataSetChanged();
 
@@ -430,7 +406,51 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 		mLayoutViewpage.setOnPageChangeListener(this);
 
+		mTitlePopup = new TitlePopup(this, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+		mTitlePopup.addAction(new ActionItem(this, R.string.menu_groupchat, R.drawable.icon_menu_group));
+
+		mTitlePopup.addAction(new ActionItem(this, R.string.menu_addfriend, R.drawable.icon_menu_addfriend));
+
+		mTitlePopup.addAction(new ActionItem(this, R.string.menu_qrcode, R.drawable.icon_menu_sao));
+
+		mTitlePopup.addAction(new ActionItem(this, R.string.menu_money, R.drawable.icon_menu_money));
+
+		mTitlePopup.setItemOnClickListener(mOnItemOnClickListener);
+
 	}
+
+	TitlePopup.OnItemOnClickListener mOnItemOnClickListener = new TitlePopup.OnItemOnClickListener() {
+
+		@Override
+
+		public void onItemClick(ActionItem item, int position) {
+
+			switch (position){
+
+				case 0:
+
+					break;
+
+				case 1:
+
+					MFGT.gotoAddFirent(MainActivity.this);
+
+					break;
+
+				case 2:
+
+					break;
+
+				case 3:
+
+					break;
+
+			}
+
+		}
+
+	};
 
 
 
@@ -668,7 +688,17 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 	public void onCheckedChange(int checkedPosition, boolean byUser) {
 
-		mLayoutViewpage.setCurrentItem(checkedPosition,false);
+		mLayoutViewpage.setCurrentItem(checkedPosition, false);
+
+	}
+
+
+
+	@OnClick(R.id.img_right)
+
+	public void showPop() {
+
+		mTitlePopup.show(findViewById(R.id.layout_title));
 
 	}
 
