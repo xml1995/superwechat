@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 package cn.ucai.superwechat.ui;
+
+
 import android.app.ProgressDialog;
 
 import android.os.Bundle;
@@ -20,11 +22,9 @@ import android.text.TextUtils;
 
 import android.view.View;
 
-import android.widget.Button;
-
 import android.widget.EditText;
 
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 
 import android.widget.TextView;
 
@@ -34,23 +34,59 @@ import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
 
-import cn.ucai.superwechat.SuperWeChatHelper;
-
-import cn.ucai.superwechat.R;
+import com.hyphenate.easeui.domain.User;
 
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 
 
 
-public class AddContactActivity extends BaseActivity{
+import butterknife.BindView;
 
-	private EditText editText;
+import butterknife.ButterKnife;
 
-	private RelativeLayout searchedUserLayout;
+import butterknife.OnClick;
 
-	private TextView nameText;
+import cn.ucai.superwechat.R;
 
-	private Button searchBtn;
+import cn.ucai.superwechat.SuperWeChatHelper;
+
+import cn.ucai.superwechat.bean.Result;
+
+import cn.ucai.superwechat.data.NetDao;
+
+import cn.ucai.superwechat.data.OkHttpUtils;
+
+import cn.ucai.superwechat.utils.CommonUtils;
+
+import cn.ucai.superwechat.utils.L;
+
+import cn.ucai.superwechat.utils.MFGT;
+
+import cn.ucai.superwechat.utils.ResultUtils;
+
+
+
+public class AddContactActivity extends BaseActivity {
+
+	private final static String TAG = AddContactActivity.class.getSimpleName();
+
+
+
+	@BindView(R.id.img_back)
+
+	ImageView mImgBack;
+
+	@BindView(R.id.txt_title)
+
+	TextView mTxtTitle;
+
+	@BindView(R.id.txt_right)
+
+	TextView mTxtRight;
+
+	@BindView(R.id.et_username)
+
+	EditText mEtUsername;
 
 	private String toAddUsername;
 
@@ -66,25 +102,25 @@ public class AddContactActivity extends BaseActivity{
 
 		setContentView(R.layout.em_activity_add_contact);
 
-		TextView mTextView = (TextView) findViewById(R.id.add_list_friends);
+		ButterKnife.bind(this);
+
+		initView();
+
+	}
 
 
 
-		editText = (EditText) findViewById(R.id.edit_note);
+	private void initView() {
 
-		String strAdd = getResources().getString(R.string.add_friend);
+		mImgBack.setVisibility(View.VISIBLE);
 
-		mTextView.setText(strAdd);
+		mTxtTitle.setVisibility(View.VISIBLE);
 
-		String strUserName = getResources().getString(R.string.user_name);
+		mTxtRight.setVisibility(View.VISIBLE);
 
-		editText.setHint(strUserName);
+		mTxtTitle.setText(getString(R.string.menu_addfriend));
 
-		searchedUserLayout = (RelativeLayout) findViewById(R.id.ll_user);
-
-		nameText = (TextView) findViewById(R.id.name);
-
-		searchBtn = (Button) findViewById(R.id.search);
+		mTxtRight.setText(getString(R.string.search));
 
 	}
 
@@ -92,49 +128,99 @@ public class AddContactActivity extends BaseActivity{
 
 
 
-	/**
+	public void searchContact() {
 
-	 * search contact
-
-	 * @param v
-
-	 */
-
-	public void searchContact(View v) {
-
-		final String name = editText.getText().toString();
-
-		String saveText = searchBtn.getText().toString();
+		final String name = mEtUsername.getText().toString().trim();
 
 
 
-		if (getString(R.string.button_search).equals(saveText)) {
+		toAddUsername = name;
 
-			toAddUsername = name;
+		if (TextUtils.isEmpty(name)) {
 
-			if(TextUtils.isEmpty(name)) {
+			new EaseAlertDialog(this, R.string.Please_enter_a_username).show();
 
-				new EaseAlertDialog(this, R.string.Please_enter_a_username).show();
+			return;
 
-				return;
+		}
+
+
+
+		progressDialog = new ProgressDialog(this);
+
+		String stri = getResources().getString(R.string.addcontact_search);
+
+		progressDialog.setMessage(stri);
+
+		progressDialog.setCanceledOnTouchOutside(false);
+
+		progressDialog.show();
+
+
+
+		searchAppUser();
+
+
+
+	}
+
+
+
+	private void searchAppUser() {
+
+		NetDao.searchUser(this, toAddUsername, new OkHttpUtils.OnCompleteListener<String>() {
+
+			@Override
+
+			public void onSuccess(String s) {
+
+				progressDialog.dismiss();
+
+				if(s!=null){
+
+					Result result = ResultUtils.getResultFromJson(s, User.class);
+
+					L.e(TAG,"searchAppUser,result="+result);
+
+					if(result!=null && result.isRetMsg()){
+
+						User user = (User) result.getRetData();
+
+						if(user!=null){
+
+							MFGT.gotoFriendProfile(AddContactActivity.this,user);
+
+						}
+
+					}else{
+
+						CommonUtils.showShortToast(R.string.msg_104);
+
+					}
+
+				}else{
+
+					CommonUtils.showShortToast(R.string.msg_104);
+
+				}
 
 			}
 
 
 
-			// TODO you can search the user from your app server here.
+			@Override
 
+			public void onError(String error) {
 
+				L.e(TAG,"error="+error);
 
-			//show the userame and add button if user exist
+				progressDialog.dismiss();
 
-			searchedUserLayout.setVisibility(View.VISIBLE);
+				CommonUtils.showShortToast(R.string.msg_104);
 
-			nameText.setText(toAddUsername);
+			}
 
-
-
-		}
+		});
 
 	}
 
@@ -148,9 +234,9 @@ public class AddContactActivity extends BaseActivity{
 
 	 */
 
-	public void addContact(View view){
+	public void addContact(View view) {
 
-		if(EMClient.getInstance().getCurrentUser().equals(nameText.getText().toString())){
+		if (EMClient.getInstance().getCurrentUser().equals(mEtUsername.getText().toString())) {
 
 			new EaseAlertDialog(this, R.string.not_add_myself).show();
 
@@ -160,11 +246,11 @@ public class AddContactActivity extends BaseActivity{
 
 
 
-		if(SuperWeChatHelper.getInstance().getContactList().containsKey(nameText.getText().toString())){
+		if (SuperWeChatHelper.getInstance().getContactList().containsKey(mEtUsername.getText().toString())) {
 
 			//let the user know the contact already in your contact list
 
-			if(EMClient.getInstance().contactManager().getBlackListUsernames().contains(nameText.getText().toString())){
+			if (EMClient.getInstance().contactManager().getBlackListUsernames().contains(mEtUsername.getText().toString())) {
 
 				new EaseAlertDialog(this, R.string.user_already_in_contactlist).show();
 
@@ -179,16 +265,6 @@ public class AddContactActivity extends BaseActivity{
 		}
 
 
-
-		progressDialog = new ProgressDialog(this);
-
-		String stri = getResources().getString(R.string.Is_sending_a_request);
-
-		progressDialog.setMessage(stri);
-
-		progressDialog.setCanceledOnTouchOutside(false);
-
-		progressDialog.show();
 
 
 
@@ -246,9 +322,25 @@ public class AddContactActivity extends BaseActivity{
 
 
 
-	public void back(View v) {
+	@OnClick({R.id.img_back, R.id.txt_right})
 
-		finish();
+	public void onClick(View view) {
+
+		switch (view.getId()) {
+
+			case R.id.img_back:
+
+				MFGT.finish(this);
+
+				break;
+
+			case R.id.txt_right:
+
+				searchContact();
+
+				break;
+
+		}
 
 	}
 

@@ -13,7 +13,6 @@
  */
 package cn.ucai.superwechat.ui;
 
-
 import android.annotation.SuppressLint;
 
 import android.annotation.TargetApi;
@@ -115,6 +114,7 @@ import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.dialog.TitleMenu.ActionItem;
 
 import cn.ucai.superwechat.dialog.TitleMenu.TitlePopup;
+
 import cn.ucai.superwechat.runtimepermissions.PermissionsManager;
 
 import cn.ucai.superwechat.runtimepermissions.PermissionsResultAction;
@@ -134,6 +134,28 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 
 	protected static final String TAG = "MainActivity";
+
+	//	// textview for unread message count
+
+//	private TextView unreadLabel;
+
+//	// textview for unread event message
+
+//	private TextView unreadAddressLable;
+
+//
+
+//	private Button[] mTabs;
+
+//	private ContactListFragment contactListFragment;
+
+//	private Fragment[] fragments;
+
+//	private int index;
+
+//	private int currentTabIndex;
+
+	// user logged into another device
 
 	public boolean isConflict = false;
 
@@ -378,6 +400,23 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 	 */
 
 	private void initView() {
+
+//		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
+
+//		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
+
+//		mTabs = new Button[3];
+
+//		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
+
+//		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
+
+//		mTabs[2] = (Button) findViewById(R.id.btn_setting);
+
+//		// select first tab
+
+//		mTabs[0].setSelected(true);
+
 		mTxtLeft.setVisibility(View.VISIBLE);
 
 		mImgRight.setVisibility(View.VISIBLE);
@@ -434,7 +473,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
 				case 1:
 
-					MFGT.gotoAddFirent(MainActivity.this);
+					MFGT.gotoAddFirend(MainActivity.this);
 
 					break;
 

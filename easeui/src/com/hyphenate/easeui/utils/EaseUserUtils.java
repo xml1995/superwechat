@@ -1,6 +1,4 @@
 package com.hyphenate.easeui.utils;
-
-
 import android.content.Context;
 
 import android.support.v4.app.FragmentActivity;
@@ -260,6 +258,14 @@ public class EaseUserUtils {
     public static void setCurrentAppUserNameWithNo(TextView textView) {
 
         String username = EMClient.getInstance().getCurrentUser();
+
+        setAppUserName("微信号 : ",username,textView);
+
+    }
+
+
+
+    public static void setAppUserNameWithNo(String username, TextView textView) {
 
         setAppUserName("微信号 : ",username,textView);
 
