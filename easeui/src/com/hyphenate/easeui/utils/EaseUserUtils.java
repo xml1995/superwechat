@@ -1,4 +1,6 @@
 package com.hyphenate.easeui.utils;
+
+
 import android.content.Context;
 
 import android.support.v4.app.FragmentActivity;
@@ -174,6 +176,12 @@ public class EaseUserUtils {
     public static void setAppUserAvatar(Context context, String username, ImageView imageView){
 
         User user = getAppUserInfo(username);
+
+        if(user==null){
+
+            user = new User(username);
+
+        }
 
         if(user != null && user.getAvatar() != null){
 

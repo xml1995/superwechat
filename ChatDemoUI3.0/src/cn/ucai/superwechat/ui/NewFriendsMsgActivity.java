@@ -13,39 +13,107 @@
  */
 package cn.ucai.superwechat.ui;
 
+
 import android.os.Bundle;
+
 import android.view.View;
+
+import android.widget.ImageView;
+
 import android.widget.ListView;
 
-import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.adapter.NewFriendsMsgAdapter;
-import cn.ucai.superwechat.db.InviteMessgeDao;
-import cn.ucai.superwechat.domain.InviteMessage;
+import android.widget.TextView;
+
+
 
 import java.util.List;
 
+
+
+import butterknife.BindView;
+
+import butterknife.ButterKnife;
+
+import butterknife.OnClick;
+
+import cn.ucai.superwechat.R;
+
+import cn.ucai.superwechat.adapter.NewFriendsMsgAdapter;
+
+import cn.ucai.superwechat.db.InviteMessgeDao;
+
+import cn.ucai.superwechat.domain.InviteMessage;
+
+import cn.ucai.superwechat.utils.MFGT;
+
+
+
 /**
+
  * Application and notification
+
  *
+
  */
+
 public class NewFriendsMsgActivity extends BaseActivity {
 
+
+
+	@BindView(R.id.img_back)
+
+	ImageView mImgBack;
+
+	@BindView(R.id.txt_title)
+
+	TextView mTxtTitle;
+
+	@BindView(R.id.list)
+
+	ListView listView;
+
+
+
 	@Override
+
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.em_activity_new_friends_msg);
 
-		ListView listView = (ListView) findViewById(R.id.list);
+		ButterKnife.bind(this);
+
+		mImgBack.setVisibility(View.VISIBLE);
+
+		mTxtTitle.setVisibility(View.VISIBLE);
+
+		mTxtTitle.setText(getString(R.string.recommended_friends));
+
 		InviteMessgeDao dao = new InviteMessgeDao(this);
+
 		List<InviteMessage> msgs = dao.getMessagesList();
 
-		NewFriendsMsgAdapter adapter = new NewFriendsMsgAdapter(this, 1, msgs); 
+
+
+		NewFriendsMsgAdapter adapter = new NewFriendsMsgAdapter(this, 1, msgs);
+
 		listView.setAdapter(adapter);
+
 		dao.saveUnreadMessageCount(0);
-		
+
+
+
 	}
 
-	public void back(View view) {
-		finish();
+
+
+	@OnClick(R.id.img_back)
+
+	public void onClick() {
+
+		MFGT.finish(this);
+
 	}
+
 }

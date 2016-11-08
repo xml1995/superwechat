@@ -1,5 +1,4 @@
 package cn.ucai.superwechat.ui;
-
 import android.app.AlertDialog.Builder;
 
 import android.app.ProgressDialog;
@@ -758,7 +757,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 
-				bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 
 				bos.flush();
 

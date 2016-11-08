@@ -21,7 +21,7 @@
 
         app:contactItemImage="@drawable/em_new_friends_icon"
 
-        app:contactItemName="@string/Application_and_notify" />
+        app:contactItemName="@string/recommended_friends" />
 
 
 
@@ -36,4 +36,7 @@
         app:contactItemImage="@drawable/em_groups_icon"
 
         app:contactItemName="@string/group_chat" />
+
+
+
 </LinearLayout>

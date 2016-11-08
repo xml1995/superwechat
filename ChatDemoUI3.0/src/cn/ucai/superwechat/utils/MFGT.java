@@ -1,6 +1,7 @@
 package cn.ucai.superwechat.utils;
 
 
+
 import android.app.Activity;
 
 import android.content.Context;
@@ -24,6 +25,8 @@ import cn.ucai.superwechat.ui.AddFriendActivity;
 import cn.ucai.superwechat.ui.FriendProfileActivity;
 
 import cn.ucai.superwechat.ui.LoginActivity;
+
+import cn.ucai.superwechat.ui.NewFriendsMsgActivity;
 
 import cn.ucai.superwechat.ui.RegisterActivity;
 
@@ -144,6 +147,14 @@ public class MFGT {
         intent.putExtra(I.User.USER_NAME,username);
 
         startActivity(context, intent);
+
+    }
+
+
+
+    public static void gotoNewFriendsMsg(Activity context){
+
+        startActivity(context, NewFriendsMsgActivity.class);
 
     }
 
