@@ -1,6 +1,7 @@
 package com.hyphenate.easeui.utils;
 
 
+
 import android.content.Context;
 
 import android.support.v4.app.FragmentActivity;
@@ -198,6 +199,42 @@ public class EaseUserUtils {
                 //use default avatar
 
                 Glide.with(context).load(user.getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_hd_avatar).into(imageView);
+
+            }
+
+        }else{
+
+            Glide.with(context).load(R.drawable.default_hd_avatar).into(imageView);
+
+        }
+
+    }
+
+
+
+    /**
+
+     * set user avatar
+
+     * @param path
+
+     */
+
+    public static void setAppUserPathAvatar(Context context, String path, ImageView imageView){
+
+        if(path != null){
+
+            try {
+
+                int avatarResId = Integer.parseInt(path);
+
+                Glide.with(context).load(avatarResId).into(imageView);
+
+            } catch (Exception e) {
+
+                //use default avatar
+
+                Glide.with(context).load(path).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_hd_avatar).into(imageView);
 
             }
 

@@ -1,6 +1,7 @@
 package cn.ucai.superwechat;
 
 
+
 import android.app.Activity;
 
 import android.content.BroadcastReceiver;
@@ -97,6 +98,12 @@ import java.util.UUID;
 
 
 
+import cn.ucai.superwechat.bean.Result;
+
+import cn.ucai.superwechat.data.NetDao;
+
+import cn.ucai.superwechat.data.OkHttpUtils;
+
 import cn.ucai.superwechat.db.InviteMessgeDao;
 
 import cn.ucai.superwechat.db.SuperWeChatDBManager;
@@ -126,6 +133,8 @@ import cn.ucai.superwechat.ui.VoiceCallActivity;
 import cn.ucai.superwechat.utils.L;
 
 import cn.ucai.superwechat.utils.PreferenceManager;
+
+import cn.ucai.superwechat.utils.ResultUtils;
 
 
 
@@ -1215,6 +1224,8 @@ public class SuperWeChatHelper {
 
         public void onContactAdded(String username) {
 
+            L.e(TAG,"MyContactListener,onContactAdded...");
+
             // save contact
 
             Map<String, EaseUser> localUsers = getContactList();
@@ -1237,6 +1248,50 @@ public class SuperWeChatHelper {
 
 
 
+            Map<String, User> localAppUsers = getAppContactList();
+
+            if(!localAppUsers.containsKey(username)){
+
+                NetDao.addContact(appContext, EMClient.getInstance().getCurrentUser(),username, new OkHttpUtils.OnCompleteListener<String>() {
+
+                    @Override
+
+                    public void onSuccess(String s) {
+
+                        if(s!=null){
+
+                            Result result = ResultUtils.getResultFromJson(s, User.class);
+
+                            if(result!=null && result.isRetMsg()){
+
+                                User u = (User) result.getRetData();
+
+                                saveAppContact(u);
+
+                                broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
+
+                            }
+
+                        }
+
+                    }
+
+
+
+                    @Override
+
+                    public void onError(String error) {
+
+
+
+                    }
+
+                });
+
+            }
+
+
+
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
 
         }
@@ -1246,6 +1301,8 @@ public class SuperWeChatHelper {
         @Override
 
         public void onContactDeleted(String username) {
+
+            L.e(TAG,"MyContactListener,onContactDeleted...");
 
             Map<String, EaseUser> localUsers = SuperWeChatHelper.getInstance().getContactList();
 
@@ -1266,6 +1323,8 @@ public class SuperWeChatHelper {
         @Override
 
         public void onContactInvited(String username, String reason) {
+
+            L.e(TAG,"MyContactListener,onContactInvited...");
 
             List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
 
@@ -1309,6 +1368,8 @@ public class SuperWeChatHelper {
 
         public void onContactAgreed(String username) {
 
+            L.e(TAG,"MyContactListener,onContactAgreed...");
+
             List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
 
             for (InviteMessage inviteMessage : msgs) {
@@ -1344,6 +1405,8 @@ public class SuperWeChatHelper {
         @Override
 
         public void onContactRefused(String username) {
+
+            L.e(TAG,"MyContactListener,onContactRefused...");
 
             // your request was refused
 

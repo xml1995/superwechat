@@ -1,5 +1,7 @@
 package cn.ucai.superwechat.db;
 
+
+
 import android.content.ContentValues;
 
 import android.database.Cursor;
@@ -446,7 +448,7 @@ public class SuperWeChatDBManager {
 
         if(db.isOpen()){
 
-            Cursor cursor = db.rawQuery("select * from " + InviteMessgeDao.TABLE_NAME + " desc",null);
+            Cursor cursor = db.rawQuery("select * from " + InviteMessgeDao.TABLE_NAME + " order by "+InviteMessgeDao.COLUMN_NAME_TIME+" desc",null);
 
             while(cursor.moveToNext()){
 
