@@ -1,7 +1,5 @@
 package cn.ucai.superwechat;
 
-package cn.ucai.superwechat;
-
         import android.content.Context;
 
         import com.hyphenate.easeui.domain.EaseUser;
