@@ -299,9 +299,6 @@ public class LoginActivity extends BaseActivity {
 		loginEMServer();
 
 	}
-
-
-
 	private void loginEMServer() {
 
 		// After logout，the DemoDB may still be accessed due to async callback, so the DemoDB will be re-opened again.
@@ -309,15 +306,8 @@ public class LoginActivity extends BaseActivity {
 		// close it before login to make sure DemoDB not overlap
 
 		SuperWeChatDBManager.getInstance().closeDB();
-
-
-
 		// reset current user name before login
-
 		SuperWeChatHelper.getInstance().setCurrentUserName(currentUsername);
-
-
-
 		final long start = System.currentTimeMillis();
 
 		// call login method
@@ -325,8 +315,6 @@ public class LoginActivity extends BaseActivity {
 		Log.d(TAG, "EMClient.getInstance().login");
 
 		EMClient.getInstance().login(currentUsername, MD5.getMessageDigest(currentPassword), new EMCallBack() {
-
-
 
 			@Override
 
